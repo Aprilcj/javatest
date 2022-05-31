@@ -1,39 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: nginx-deployment
-    namespace: mars-deploy
-    labels:
+  name: nginx-deployment
+  namespace: mars-deploy
+  labels:
     app: nginx
 spec:
-    replicas: 3
-    selector:
+  replicas: 3
+  selector:
     matchLabels:
-        app: nginx
-    template:
+      app: nginx
+  template:
     metadata:
-        labels:
+      labels:
         app: nginx
     spec:
-        initContainers:
+      initContainers:
         - name: myapp-container
           image: busybox:1.28
-          command: [ 'sh', '-c', 'echo The app is running! && sleep 360' ]
-        containers:
+          command: [ 'sh', '-c', 'echo The app is running! && sleep 36000' ]
+      containers:
         - name: nginx
           image: nginx:1.14.0
           ports:
-          - containerPort: 80
+            - containerPort: 80
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-    name: my-service
-    namespace: mars-deploy
+  name: my-service
+  namespace: mars-deploy
 spec:
-    selector:
+  selector:
     app: nginx
-    ports:
+  ports:
     - protocol: TCP
       port: 8080
       targetPort: 80
