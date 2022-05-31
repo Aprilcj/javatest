@@ -17,13 +17,13 @@ spec:
     spec:
         initContainers:
         - name: myapp-container
-            image: busybox:1.28
-            command: [ 'sh', '-c', 'echo The app is running! && sleep 360' ]
+          image: busybox:1.28
+          command: [ 'sh', '-c', 'echo The app is running! && sleep 360' ]
         containers:
         - name: nginx
-            image: nginx:1.14.0
-            ports:
-            - containerPort: 80
+          image: nginx:1.14.0
+          ports:
+          - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -35,5 +35,5 @@ spec:
     app: nginx
     ports:
     - protocol: TCP
-        port: 8080
-        targetPort: 80
+      port: 8080
+      targetPort: 80
