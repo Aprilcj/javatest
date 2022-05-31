@@ -18,7 +18,7 @@ spec:
         initContainers:
         - name: myapp-container
             image: busybox:1.28
-            command: [ 'sh', '-c', 'echo The app is running! && sleep 36000' ]
+            command: [ 'sh', '-c', 'echo The app is running! && sleep 360' ]
         containers:
         - name: nginx
             image: nginx:1.14.0
